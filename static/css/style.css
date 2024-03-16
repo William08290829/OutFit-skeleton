@@ -145,7 +145,7 @@ body{
     font-style: normal;
     font-weight: 400;
     /* src: url("{{ url_for('static', filename='font/material-symbol-rounded.woff2') }}"); */
-    src: url("static/font/material-symbol-rounded.woff2");
+    src: url("../font/material-symbol-rounded.woff2");
 }
 
 .m-icon {
