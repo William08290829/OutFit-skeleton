@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OutFit - Fit the weather</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script
+        src="static/js/app.js"
+        type="module"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" 
+        integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="icon" href="static/assets/images/cloud.png">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="static/assets/images/cloud.png" alt="logo">
+            </a>
+
+            <div class="search-view" data-search-view>
+                <div class="search-wrapper">
+                    <input type="search" name="search" placeholder="找尋城市..." autocomplete="off" class="search-field" data-search-field>
+                    <span class="m-icon leading-icon">search</span> 
+
+                    <button class="icon-btn leading-icon has-state" aria-label="close-search" data-search-toggler>
+                        <span class="m-icon">arrow_back</span>
+                    </button> 
+                </div>
+                
+
+                <div class="search-result" data-search-result>
+                    
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button class="icon-btn has-state" aria-label="open search" data-search-toggler>
+                    <span class="m-icon icon">search</span>
+                </button>
+                
+                <a href="/current-location" class="btn-primary has-state" data-current-location-btn>
+                    <span class="m-icon">my_location</span>
+                    <span class="span">現在位置</span>
+                </a>
+            </div>
+        </div>
+        
+        
+    </header>
+
+
+    <main>
+        <article class="container">
+            <div class="content-left">
+                <!-- 
+                    CURRENT WEATHER 
+                -->
+                <section class="section current-weather" aria-label="current weather" data-current-weather>
+                    <div class="card card-lg current-weather-card">
+
+                        <h2 class="title-2 card-title">現在</h2>
+
+                        <div class="weapper">
+                            <p class="heading">
+                                22&deg;<sup>c</sup>  
+                            </p>
+
+                            <img class="weather-icon" src="static/assets/images/weather_icons/01d.png" alt="">
+
+                            <!-- <div class="meta-list Max-min-temp">
+                                <li class="meta-item">
+                                    <span class="m-icon">keyboard_arrow_up</span>
+                                    <p class="title-3 meta-text">30&deg;C</p>
+                                </li>
+    
+                                <li class="meta-item">
+                                    <span class="m-icon">keyboard_arrow_down</span>
+                                    <p class="title-3 meta-text">20&deg;C</p>
+                                </li>
+                            </div> -->
+
+                        </div>
+
+                        <p class="body-3">晴朗</p>
+                        
+                        <!-- <div class="seperator"></div> -->
+
+                        <ul class="meta-list">
+
+                            <li class="meta-item">
+                                <span class="m-icon">calendar_today</span>
+                                <p class="title-3 meta-text">3/09, 星期六</p>
+                            </li>
+
+                            <li class="meta-item">
+                                <span class="m-icon">location_on</span>
+                                <p class="title-3 meta-text">台北市</p>
+                            </li>
+                        </ul>
+
+                    </div>
+                </section>
+
+
+                <!-- 
+                    DAILY FORCAST
+                 -->
+                <section class="section forecast" aria-labelledby="forecast-label" data-5-day-forecast>
+                   <h2 class="title-2" id="forecast-label">預報</h2> 
+
+                   <div class="card card-lg forecast-card">
+                        <ul>
+                            <a class="card-item has-state" href="/">
+                                <div class="icon-wrapper">
+                                    <img src="static/assets/images/weather_icons/01n.png" width="36" height="36" alt="Overcast Clouds" class="weather-icon">
+
+                                    <span class="span">
+                                        <p class="title-2">22&deg;</p>
+                                    </span>
+                                </div>
+
+                                <p class="label-1">今天</p>
+                                <p class="label-1">星期六</p>
+                            </a>
+                            
+                            <a class="card-item has-state" href="/">
+                                <div class="icon-wrapper">
+                                    <img src="static/assets/images/weather_icons/01n.png" width="36" height="36" alt="Overcast Clouds" class="weather-icon">
+
+                                    <span class="span">
+                                        <p class="title-2">25&deg;</p>
+                                    </span>
+                                </div>
+
+                                <p class="label-1">3/10</p>
+                                <p class="label-1">星期日</p>
+                            </a>
+
+                            <a class="card-item has-state" href="/">
+                                <div class="icon-wrapper">
+                                    <img src="static/assets/images/weather_icons/01n.png" width="36" height="36" alt="Overcast Clouds" class="weather-icon">
+
+                                    <span class="span">
+                                        <p class="title-2">25&deg;</p>
+                                    </span>
+                                </div>
+
+                                <p class="label-1">3/11</p>
+                                <p class="label-1">星期一</p>
+
+                            <a class="card-item has-state" href="/">
+                                <div class="icon-wrapper">
+                                    <img src="static/assets/images/weather_icons/01n.png" width="36" height="36" alt="Overcast Clouds" class="weather-icon">
+
+                                    <span class="span">
+                                        <p class="title-2">25&deg;</p>
+                                    </span>
+                                </div>
+
+                                <p class="label-1">3/12</p>
+                                <p class="label-1">星期二</p>
+                            </a>
+
+                            <a class="card-item has-state" href="/">
+                                <div class="icon-wrapper">
+                                    <img src="static/assets/images/weather_icons/01n.png" width="36" height="36" alt="Overcast Clouds" class="weather-icon">
+
+                                    <span class="span">
+                                        <p class="title-2">25&deg;</p>
+                                    </span>
+                                </div>
+
+                                <p class="label-1">3/13</p>
+                                <p class="label-1">星期三</p>
+                            </a>
+                        </ul>
+
+                        
+                   </div>
+                </section>
+
+                
+            </div>
+
+
+
+            <div class="content-right">
+                <!-- 
+                    Highlight
+                 -->
+                <section class="section highlights" aria-labelledby="highlights-label" data-highlights>
+                    <div class="card card-lg">
+                        <h2 class="title-2" id="highlights-label">3/09, 台北市的天氣</h2>
+                        
+                        <div class="highlight-list">
+
+                            <!-- <div class="card card-sm highlight-card one">
+                                <h3 class="title-3">空氣品質</h3>
+
+                                <div class="wrapper">
+                                    <span class="m-icon">air</span>
+                                    <ul class="card-list">
+                                        <li class="card-item">
+                                            <p class="title-1">23.3</p>
+
+                                            <p class="label-1">PM<sub>2.5</sub></p>
+                                        </li>
+
+                                        <li class="card-item">
+                                            <p class="title-1">23.3</p>
+
+                                            <p class="label-1">PM<sub>2.5</sub></p>
+                                        </li>
+
+                                        <li class="card-item">
+                                            <p class="title-1">23.3</p>
+
+                                            <p class="label-1">PM<sub>2.5</sub></p>
+                                        </li>
+
+                                        <li class="card-item">
+                                            <p class="title-1">23.3</p>
+
+                                            <p class="label-1">PM<sub>2.5</sub></p>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+                                <span class="badge aqi-1 label-1" title="aqi message">
+                                    良好
+                                </span>
+
+                            </div>
+
+                            <div class="card card-sm highlight-card two">
+                                <h3 class="title-3">日出和日落</h3>
+                                <div class="card-list">
+
+                                    <div class="card-item">
+                                        <span class="m-icon">clear_day</span>
+
+                                        <div>
+                                            <p class="label-1">日出</p>
+
+                                            <p class="title-1">6:30 AM</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-item">
+                                        <span class="m-icon">clear_night</span>
+
+                                        <div>
+                                            <p class="label-1">日落</p>
+
+                                            <p class="title-1">6:00 PM</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div> -->
+
+                            <!-- <div class="card card-sm highlight-card">
+                                <h3 class="title-3">濕度</h3>
+
+                                <div class="wrapper">
+                                    <span class="m-icon">humidity_percentage</span>
+
+                                    <p class="title-1">35<sub>%</sub></p>
+                                </div>
+                            </div> -->
+
+                            <div class="card card-sm highlight-card">
+                                <h3 class="title-3">高/低</h3>
+
+                                <div class="wrapper">
+                                    <span class="m-icon">thermostat</span>
+
+                                    <p class="title-1">
+                                        20&deg;/ 25&deg;
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="card card-sm highlight-card">
+                                <h3 class="title-3">降雨機率</h3>
+
+                                <div class="wrapper">
+                                    <span class="m-icon">rainy</span>
+
+                                    <p class="title-1">50<sub>%</sub></p>
+                                </div>
+                            </div>
+
+                            <!-- <div class="card card-sm highlight-card">
+                                <h3 class="title-3">體感溫度</h3>
+
+                                <div class="wrapper">
+                                    <span class="m-icon">thermostat</span>
+
+                                    <p class="title-1">25&deg;<sup>c</sup></p>
+                                </div>
+                            </div> -->
+
+                            <div class="card card-sm highlight-card two">
+                                <h3 class="title-3">溫度</h3>
+
+                                <div class="graph-wrapper">
+                                    <img src="static/assets/images/temp_pic.png" alt="">
+                                </div>
+
+                                <!-- <div class="card-list">
+
+                                    <div class="card-item">
+                                        <span class="m-icon">clear_day</span>
+
+                                        <div>
+                                            <p class="label-1">日出</p>
+
+                                            <p class="title-1">6:30 AM</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-item">
+                                        <span class="m-icon">clear_night</span>
+
+                                        <div>
+                                            <p class="label-1">日落</p>
+
+                                            <p class="title-1">6:00 PM</p>
+                                        </div>
+                                    </div>
+
+                                </div> -->
+                            </div>
+
+
+
+                            
+                        </div>
+                    
+                    </div>
+
+
+                </section>
+
+
+                <!-- 
+                   Clothing REC 
+                 -->
+
+                <section class="sevtion hourly-forecast" aria-label="hourly forecast" data-hourly-forecast>
+                    <h2 class="title-2">穿搭推薦</h2>
+
+                    <div class="slider-container">
+                        <ul class="slider-list" data-temp>
+
+                            <li class="slider-item">
+                                <div class="card card-sm slider-card">
+                                    <!-- <p class="boby-3">03 PM</p> -->
+                                    <img src="static/assets/images/clothing-hanger.png" width="72" height="72"
+                                         loading="lazy" alt="" class="weather-icon" title="">
+
+                                </div>
+                            </li>
+
+                            <li class="slider-item">
+                                <div class="card card-sm slider-card">
+                                    <!-- <p class="boby-3">03 PM</p> -->
+                                    <img src="static/assets/images/tshirt.png" width="72" height="72"
+                                         loading="lazy" alt="" class="weather-icon" title="">
+                                    
+                                </div>
+                            </li>
+
+                            <li class="slider-item">
+                                <div class="card card-sm slider-card">
+                                    <!-- <p class="boby-3">03 PM</p> -->
+                                    <img src="static/assets/images/pants.png" width="72" height="72"
+                                         loading="lazy" alt="" class="weather-icon" title="">
+                                    
+                                </div>
+                            </li>
+
+                            <li class="slider-item">
+                                <div class="card card-sm slider-card">
+                                    <!-- <p class="boby-3">03 PM</p> -->
+                                    <img src="static/assets/images/sun-glasses.png" width="72" height="72"
+                                         loading="lazy" alt="" class="weather-icon" title="">
+                                    
+                                </div>
+                            </li>
+
+                            <li class="slider-item">
+                                <div class="card card-sm slider-card">
+                                    <!-- <p class="boby-3">03 PM</p> -->
+                                    <img src="static/assets/images/sneakers.png" width="72" height="72"
+                                         loading="lazy" alt="" class="weather-icon" title="">
+                                    
+                                </div>
+                            </li>
+
+                            <li class="slider-item">
+                                <div class="card card-sm slider-card">
+                                    <!-- <p class="boby-3">03 PM</p> -->
+                                    <img src="static/assets/images/hat.png" width="72" height="72"
+                                         loading="lazy" alt="" class="weather-icon" title="">
+                                    
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </section>
+
+
+                <!-- 
+                    FOOTER
+                -->
+                <footer class="footer">
+                    <p class="body-3">
+                        Copyright &#169; 2024 William Chen. All Rights Reserved.
+                    </p>
+                </footer>
+
+
+            </div>
+
+            <div class="loading" data-loading>
+
+            </div>
+            
+            
+
+        </article>
+    </main>
+   
+</body>
+
+
+</html>
